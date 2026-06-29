@@ -4,160 +4,308 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Arquitetura do Sentido</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #f7f4e9; 
-            --card-bg: #ffffff;
-            --primary-dark: #1a1a1a;
-            --accent-gold: #c5a059;
-            --text-main: #333;
+            --bg:         #f7f4e9;
+            --card-bg:    #ffffff;
+            --dark:       #1a1a1a;
+            --gold:       #c5a059;
+            --gold-light: #e8d5a8;
+            --text:       #333;
+            --muted:      #666;
         }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg);
+            color: var(--text);
             margin: 0;
-            padding: 60px 20px;
+            padding: 60px 20px 80px;
             line-height: 1.8;
         }
-        .container { max-width: 800px; margin: 0 auto; }
-        
-        /* Animação de revelação */
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* ── HEADER ─────────────────────────────────────── */
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .title-wrapper {
+            display: inline-block;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(1.8em, 5vw, 2.8em);
+            color: var(--dark);
+            margin: 0 0 20px;
+            line-height: 1.2;
+            white-space: normal;         /* wrap freely */
+            word-break: break-word;
+        }
+
+        /* Cursor element injected by JS */
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background: var(--gold);
+            margin-left: 4px;
+            vertical-align: middle;
+            animation: blink .75s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50%       { opacity: 0; }
+        }
+
+        .subtitle {
+            font-size: 1.05em;
+            color: var(--muted);
+            font-style: italic;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+
+        /* ── FADE-IN ─────────────────────────────────────── */
         .fade-in-section {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
+            transform: translateY(24px);
+            transition: opacity 0.9s ease-out, transform 0.9s ease-out;
         }
+
         .fade-in-section.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        header { text-align: center; margin-bottom: 80px; }
-        
-        /* Efeito Typewriter corrigido */
-        h1 { 
-            font-family: 'Crimson Text', serif; 
-            font-size: 2.8em; 
-            color: var(--primary-dark); 
-            margin-bottom: 15px;
-            overflow: hidden; 
-            white-space: nowrap; 
-            border-right: 3px solid var(--accent-gold); 
-            width: 27ch; /* Define o tamanho baseado no número de caracteres */
-            margin: 0 auto;
-            animation: typing 3.5s steps(27, end), blink-caret .75s step-end infinite;
+        /* ── SECTIONS ────────────────────────────────────── */
+        section {
+            margin-bottom: 50px;
+            padding: 36px 40px;
+            background: var(--card-bg);
+            border: 1px solid rgba(0,0,0,0.06);
+            border-left: 4px solid var(--gold);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            border-radius: 0 4px 4px 0;
         }
 
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 27ch }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--accent-gold) }
+        h2 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.75em;
+            color: var(--dark);
+            margin: 0 0 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--gold-light);
         }
 
-        .subtitle { font-size: 1.1em; color: #555; font-style: italic; max-width: 600px; margin: 20px auto 0 auto; }
-        
-        section { margin-bottom: 60px; padding: 40px; border: 1px solid rgba(0,0,0,0.05); border-left: 4px solid var(--accent-gold); background: var(--card-bg); box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
-        h2 { font-family: 'Crimson Text', serif; font-size: 1.8em; color: var(--primary-dark); margin-top: 0; }
-        
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th { text-align: left; padding: 15px; background: var(--primary-dark); color: #fff; }
-        td { padding: 15px; border-bottom: 1px solid #eee; }
+        ul {
+            padding-left: 20px;
+            margin: 0;
+        }
 
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        ul li strong {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        /* ── TABLE ───────────────────────────────────────── */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 280px;
+        }
+
+        th {
+            text-align: left;
+            padding: 13px 16px;
+            background: var(--dark);
+            color: #fff;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        td {
+            padding: 13px 16px;
+            border-bottom: 1px solid #eee;
+            font-size: 0.97em;
+        }
+
+        tr:last-child td { border-bottom: none; }
+
+        tr:hover td { background: #faf8f2; }
+
+        /* ── LEGADO BOX ──────────────────────────────────── */
         .legado-box {
-            background-color: var(--primary-dark);
+            background-color: var(--dark);
             color: #fdfdfd;
-            padding: 50px;
+            padding: 52px 48px;
             text-align: center;
-            border: 2px solid var(--accent-gold);
+            border: 2px solid var(--gold);
             margin-top: 60px;
+            border-radius: 2px;
         }
+
         .legado-texto {
             font-family: 'Crimson Text', serif;
-            font-size: 1.6em;
-            line-height: 1.4;
-            letter-spacing: 0.5px;
+            font-size: clamp(1.25em, 3.5vw, 1.65em);
+            line-height: 1.5;
+            letter-spacing: 0.3px;
             margin: 0;
             font-style: italic;
+            color: #f0ead8;
+        }
+
+        /* ── RESPONSIVE ──────────────────────────────────── */
+        @media (max-width: 560px) {
+            section {
+                padding: 28px 22px;
+            }
+            .legado-box {
+                padding: 38px 24px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fade-in-section {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .cursor { animation: none; }
         }
     </style>
 </head>
 <body>
     <div class="container">
+
         <header>
-            <h1>A Arquitetura do Sentido</h1>
-            <p class="subtitle">Uma análise sobre a convergência entre o rigor científico, a busca pela Verdade e a perenidade da construção humana[span_2](start_span)[span_2](end_span).</p>
+            <div class="title-wrapper">
+                <h1 id="typewriter-title"></h1>
+            </div>
+            <p class="subtitle">
+                Uma análise sobre a convergência entre o rigor científico, a busca pela Verdade e a perenidade da construção humana.
+            </p>
         </header>
 
         <section class="fade-in-section">
             <h2>Pensadores e a Inteligência Superior</h2>
             <ul>
-                <li><strong>Sócrates:</strong> Acreditava numa ordem divina e falava do seu "daimon[span_3](start_span)"[span_3](end_span).</li>
-                <li><strong>Platão:</strong> Defendia um princípio supremo do Bem e uma realidade transcendente[span_4](start_span)[span_4](end_span).</li>
-                <li><strong>Aristóteles:</strong> Formulou o conceito do "Primeiro Motor Imóvel[span_5](start_span)"[span_5](end_span).</li>
-                <li><strong>Immanuel Kant:</strong> Definiu a existência de Deus como um "postulado da razão prática", essencial para a coerência moral do mundo[span_6](start_span)[span_6](end_span).</li>
-                <li><strong>René Descartes:</strong> Considerava a existência de Deus fundamental para a sua filosofia[span_7](start_span)[span_7](end_span).</li>
-                <li><strong>Blaise Pascal:</strong> Profundamente cristão[span_8](start_span)[span_8](end_span).</li>
-                <li><strong>Gottfried Wilhelm Leibniz:</strong> Via Deus como criador de um universo racional[span_9](start_span)[span_9](end_span).</li>
-                <li><strong>Isaac Newton:</strong> Escreveu mais sobre teologia do que sobre física[span_10](start_span)[span_10](end_span).</li>
-                <li><strong>Michael Faraday:</strong> Cristão convicto[span_11](start_span)[span_11](end_span).</li>
-                <li><strong>James Clerk Maxwell:</strong> Cristão praticante[span_12](start_span)[span_12](end_span).</li>
-                <li><strong>Gregor Mendel:</strong> Monge e fundador da genética[span_13](start_span)[span_13](end_span).</li>
-                <li><strong>Louis Pasteur:</strong> Expressava fé em Deus[span_14](start_span)[span_14](end_span).</li>
-                <li><strong>Max Planck:</strong> Acreditava que ciência e religião eram compatíveis[span_15](start_span)[span_15](end_span).</li>
-                <li><strong>Werner Heisenberg:</strong> Reconhecia uma dimensão espiritual da realidade[span_16](start_span)[span_16](end_span).</li>
-                <li><strong>Albert Einstein:</strong> Não era cristão; acreditava no "Deus de Baruch Spinoza" (ordem racional da natureza)[span_17](start_span)[span_17](end_span).</li>
-                <li><strong>Francis Collins:</strong> Diretor do Projeto Genoma Humano e cristão[span_18](start_span)[span_18](end_span).</li>
+                <li><strong>Sócrates:</strong> Acreditava numa ordem divina e falava do seu "daimon".</li>
+                <li><strong>Platão:</strong> Defendia um princípio supremo do Bem e uma realidade transcendente.</li>
+                <li><strong>Aristóteles:</strong> Formulou o conceito do "Primeiro Motor Imóvel".</li>
+                <li><strong>Immanuel Kant:</strong> Definiu a existência de Deus como um "postulado da razão prática", essencial para a coerência moral do mundo.</li>
+                <li><strong>René Descartes:</strong> Considerava a existência de Deus fundamental para a sua filosofia.</li>
+                <li><strong>Blaise Pascal:</strong> Profundamente cristão.</li>
+                <li><strong>Gottfried Wilhelm Leibniz:</strong> Via Deus como criador de um universo racional.</li>
+                <li><strong>Isaac Newton:</strong> Escreveu mais sobre teologia do que sobre física.</li>
+                <li><strong>Michael Faraday:</strong> Cristão convicto.</li>
+                <li><strong>James Clerk Maxwell:</strong> Cristão praticante.</li>
+                <li><strong>Gregor Mendel:</strong> Monge e fundador da genética.</li>
+                <li><strong>Louis Pasteur:</strong> Expressava fé em Deus.</li>
+                <li><strong>Max Planck:</strong> Acreditava que ciência e religião eram compatíveis.</li>
+                <li><strong>Werner Heisenberg:</strong> Reconhecia uma dimensão espiritual da realidade.</li>
+                <li><strong>Albert Einstein:</strong> Não era cristão; acreditava no "Deus de Baruch Spinoza" — a ordem racional da natureza.</li>
+                <li><strong>Francis Collins:</strong> Diretor do Projeto Genoma Humano e cristão.</li>
             </ul>
         </section>
 
         <section class="fade-in-section">
-            <h2>Pensadores não cristãos</h2>
+            <h2>Pensadores Não Cristãos</h2>
             <ul>
-                <li><strong>Maimônides, Avicena e Averróis:</strong> Racionalistas que integraram a fé à filosofia[span_19](start_span)[span_19](end_span).</li>
-                <li><strong>Mahatma Gandhi:</strong> Profundamente religioso (hindu)[span_20](start_span)[span_20](end_span).</li>
-                <li><strong>Rabindranath Tagore:</strong> Defendia uma espiritualidade centrada em Deus[span_21](start_span)[span_21](end_span).</li>
+                <li><strong>Maimônides, Avicena e Averróis:</strong> Racionalistas que integraram a fé à filosofia.</li>
+                <li><strong>Mahatma Gandhi:</strong> Profundamente religioso (hindu).</li>
+                <li><strong>Rabindranath Tagore:</strong> Defendia uma espiritualidade centrada em Deus.</li>
             </ul>
         </section>
 
         <section class="fade-in-section">
             <h2>Universidades Fundadas pelo Cristianismo</h2>
-            <table>
-                <tr><th>Universidade</th><th>Fundação</th></tr>
-                <tr><td>Bolonha</td><td>1088[span_22](start_span)[span_22](end_span)</td></tr>
-                <tr><td>Oxford</td><td>Século XII[span_23](start_span)[span_23](end_span)</td></tr>
-                <tr><td>Paris</td><td>Escola de Notre-Dame[span_24](start_span)[span_24](end_span)</td></tr>
-                <tr><td>Cambridge</td><td>1209[span_25](start_span)[span_25](end_span)</td></tr>
-                <tr><td>Salamanca</td><td>1218[span_26](start_span)[span_26](end_span)</td></tr>
-                <tr><td>Pádua</td><td>1222[span_27](start_span)[span_27](end_span)</td></tr>
-                <tr><td>Coimbra</td><td>1290[span_28](start_span)[span_28](end_span)</td></tr>
-                <tr><td>Heidelberg</td><td>1386[span_29](start_span)[span_29](end_span)</td></tr>
-                <tr><td>Jaguelônica</td><td>1364[span_30](start_span)[span_30](end_span)</td></tr>
-            </table>
+            <div class="table-wrapper">
+                <table>
+                    <tr><th>Universidade</th><th>Fundação</th></tr>
+                    <tr><td>Bolonha</td><td>1088</td></tr>
+                    <tr><td>Oxford</td><td>Século XII</td></tr>
+                    <tr><td>Paris</td><td>Escola de Notre-Dame</td></tr>
+                    <tr><td>Cambridge</td><td>1209</td></tr>
+                    <tr><td>Salamanca</td><td>1218</td></tr>
+                    <tr><td>Pádua</td><td>1222</td></tr>
+                    <tr><td>Coimbra</td><td>1290</td></tr>
+                    <tr><td>Heidelberg</td><td>1386</td></tr>
+                    <tr><td>Jaguelônica</td><td>1364</td></tr>
+                </table>
+            </div>
         </section>
 
         <div class="legado-box fade-in-section">
             <p class="legado-texto">
-                Nossa existência não é uma bosta que logo vai se decompor, mas é uma construção de sentido que é marcada e desenvolvida para a posteridade.
+                Nossa existência não é uma construção efémera que logo se dispersa, mas uma arquitectura de sentido marcada e desenvolvida para a posteridade.
             </p>
         </div>
+
     </div>
 
     <script>
+        // ── Typewriter via JS (funciona em qualquer largura de tela) ──
+        (function () {
+            const el    = document.getElementById('typewriter-title');
+            const text  = 'A Arquitetura do Sentido';
+            const speed = 80; // ms por caractere
+            let   i     = 0;
+
+            // Cria cursor separado
+            const cursor = document.createElement('span');
+            cursor.className = 'cursor';
+            el.insertAdjacentElement('afterend', cursor);
+
+            function type() {
+                if (i < text.length) {
+                    el.textContent += text[i++];
+                    setTimeout(type, speed);
+                } else {
+                    // Para o cursor piscando após 3s
+                    setTimeout(() => { cursor.style.animation = 'none'; cursor.style.opacity = '0'; }, 3000);
+                }
+            }
+
+            // Pequeno delay antes de começar
+            setTimeout(type, 400);
+        })();
+
+        // ── Fade-in por scroll ──
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
                 }
             });
-        });
-        document.querySelectorAll('.fade-in-section').forEach((section) => {
-            observer.observe(section);
-        });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-section').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
