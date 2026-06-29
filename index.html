@@ -23,9 +23,43 @@
         }
         .container { max-width: 800px; margin: 0 auto; }
         
+        /* Animação de revelação para seções */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         header { text-align: center; margin-bottom: 80px; }
-        h1 { font-family: 'Crimson Text', serif; font-size: 2.8em; color: var(--primary-dark); margin-bottom: 15px; }
-        .subtitle { font-size: 1.1em; color: #555; font-style: italic; max-width: 600px; margin: 0 auto; }
+        
+        /* Efeito Typewriter no H1 */
+        h1 { 
+            font-family: 'Crimson Text', serif; 
+            font-size: 2.8em; 
+            color: var(--primary-dark); 
+            margin-bottom: 15px;
+            overflow: hidden; 
+            white-space: nowrap; 
+            border-right: 3px solid var(--accent-gold); 
+            width: fit-content;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-gold) }
+        }
+
+        .subtitle { font-size: 1.1em; color: #555; font-style: italic; max-width: 600px; margin: 20px auto 0 auto; }
         
         section { margin-bottom: 60px; padding: 40px; border: 1px solid rgba(0,0,0,0.05); border-left: 4px solid var(--accent-gold); background: var(--card-bg); box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
         h2 { font-family: 'Crimson Text', serif; font-size: 1.8em; color: var(--primary-dark); margin-top: 0; }
@@ -55,17 +89,17 @@
 <body>
     <div class="container">
         <header>
-            <h1>A Arquitetura do Sentido e a Transcendência do Intelecto</h1>
-            <p class="subtitle">Uma análise sobre a convergência entre o rigor científico, a busca pela Verdade e a perenidade da construção humana, refutando a visão efêmera da existência.</p>
+            <h1>A Arquitetura do Sentido</h1>
+            <p class="subtitle">Uma análise sobre a convergência entre o rigor científico, a busca pela Verdade e a perenidade da construção humana.</p>
         </header>
 
-        <section>
+        <section class="fade-in-section">
             <h2>Pensadores e a Inteligência Superior</h2>
             <ul>
                 <li><strong>Sócrates:</strong> Acreditava numa ordem divina e falava do seu "daimon".</li>
                 <li><strong>Platão:</strong> Defendia um princípio supremo do Bem e uma realidade transcendente.</li>
                 <li><strong>Aristóteles:</strong> Formulou o conceito do "Primeiro Motor Imóvel".</li>
-                <li><strong>Immanuel Kant:</strong> Definiu a existência de Deus como um "postulado da razão prática", essencial para a coerência moral do mundo.</li>
+                <li><strong>Immanuel Kant:</strong> Definiu a existência de Deus como um "postulado da razão prática".</li>
                 <li><strong>René Descartes:</strong> Considerava a existência de Deus fundamental para a sua filosofia.</li>
                 <li><strong>Blaise Pascal:</strong> Profundamente cristão.</li>
                 <li><strong>Gottfried Wilhelm Leibniz:</strong> Via Deus como criador de um universo racional.</li>
@@ -81,7 +115,7 @@
             </ul>
         </section>
 
-        <section>
+        <section class="fade-in-section">
             <h2>Pensadores não cristãos</h2>
             <ul>
                 <li><strong>Maimônides, Avicena e Averróis:</strong> Racionalistas que integraram a fé à filosofia.</li>
@@ -90,7 +124,7 @@
             </ul>
         </section>
 
-        <section>
+        <section class="fade-in-section">
             <h2>Universidades Fundadas pelo Cristianismo</h2>
             <table>
                 <tr><th>Universidade</th><th>Fundação</th></tr>
@@ -106,11 +140,25 @@
             </table>
         </section>
 
-        <div class="legado-box">
+        <div class="legado-box fade-in-section">
             <p class="legado-texto">
                 Nossa existência não é uma bosta que logo vai se decompor, mas é uma construção de sentido que é marcada e desenvolvida para a posteridade.
             </p>
         </div>
     </div>
+
+    <script>
+        // Script simples para ativar a animação de fade-in ao rolar a página
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        });
+        document.querySelectorAll('.fade-in-section').forEach((section) => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
