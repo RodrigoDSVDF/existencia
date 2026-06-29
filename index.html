@@ -1,83 +1,168 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
-    <title>Grandes Pensadores e o Legado Universitário</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legado Intelectual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 40px auto; padding: 20px; background-color: #fdfdfd; }
-        h1 { color: #2c3e50; border-bottom: 2px solid #2c3e50; padding-bottom: 10px; }
-        h2 { color: #34495e; margin-top: 30px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background-color: #f4f4f4; color: #333; }
-        tr:nth-child(even) { background-color: #f9f9f9; }
-        .legado-box {
-            background-color: #e8f4f8;
-            border-left: 6px solid #2980b9;
-            padding: 25px;
-            margin-top: 50px;
+        :root {
+            --bg-color: #f4f1ea;
+            --card-bg: #ffffff;
+            --primary-color: #2c3e50;
+            --accent-color: #b8860b;
+            --text-color: #333;
+        }
+        body {
+            font-family: 'Lora', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        header {
             text-align: center;
+            margin-bottom: 60px;
+        }
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .divider {
+            width: 80px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 0 auto;
+        }
+        section {
+            background: var(--card-bg);
+            padding: 40px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-top: 0;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th {
+            text-align: left;
+            border-bottom: 2px solid var(--primary-color);
+            padding: 12px;
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        .legado-box {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 40px;
+            text-align: center;
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+        .legado-texto {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4em;
+            font-weight: 300;
+            line-height: 1.4;
             font-style: italic;
-            font-size: 1.2em;
-            color: #2c3e50;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
     </style>
 </head>
 <body>
-    <h1>Grandes Pensadores e o Legado Universitário</h1>
-    
-    <h2>Grandes Pensadores que acreditavam em Deus (ou em uma inteligência superior)</h2>
-    <ul>
-        <li><strong>Sócrates:</strong> Acreditava em uma ordem divina e falava de seu "daimon".</li>
-        <li><strong>Platão:</strong> Defendia um princípio supremo do Bem e uma realidade transcendente.</li>
-        <li><strong>Aristóteles:</strong> Formulou o conceito do "Primeiro Motor Imóvel".</li>
-        <li><strong>René Descartes:</strong> Considerava a existência de Deus fundamental para sua filosofia.</li>
-        <li><strong>Blaise Pascal:</strong> Profundamente cristão.</li>
-        <li><strong>Gottfried Wilhelm Leibniz:</strong> Via Deus como criador de um universo racional.</li>
-        <li><strong>Isaac Newton:</strong> Escreveu mais sobre teologia do que sobre física.</li>
-        <li><strong>Michael Faraday:</strong> Cristão convicto.</li>
-        <li><strong>James Clerk Maxwell:</strong> Cristão praticante.</li>
-        <li><strong>Gregor Mendel:</strong> Monge e fundador da genética.</li>
-        <li><strong>Louis Pasteur:</strong> Expressava fé em Deus.</li>
-        <li><strong>Max Planck:</strong> Acreditava que ciência e religião eram compatíveis.</li>
-        <li><strong>Werner Heisenberg:</strong> Reconhecia uma dimensão espiritual da realidade.</li>
-        <li><strong>Albert Einstein:</strong> Não era cristão; acreditava no "Deus de Baruch Spinoza" (ordem racional da natureza).</li>
-        <li><strong>Francis Collins:</strong> Diretor do Projeto Genoma Humano e cristão.</li>
-    </ul>
+    <div class="container">
+        <header>
+            <h1>O Legado do Pensamento</h1>
+            <div class="divider"></div>
+        </header>
 
-    <h2>Pensadores não cristãos que acreditavam em Deus</h2>
-    <ul>
-        <li>Maimônides</li>
-        <li>Avicena</li>
-        <li>Averróis</li>
-        <li>Mahatma Gandhi (Hindu)</li>
-        <li>Rabindranath Tagore</li>
-    </ul>
+        <section>
+            <h2>Pensadores e a Inteligência Superior</h2>
+            <ul>
+                <li><strong>Sócrates:</strong> Acreditava numa ordem divina e falava do seu "daimon".</li>
+                <li><strong>Platão:</strong> Defendia um princípio supremo do Bem e uma realidade transcendente.</li>
+                <li><strong>Aristóteles:</strong> Formulou o conceito do "Primeiro Motor Imóvel".</li>
+                <li><strong>René Descartes:</strong> Considerava a existência de Deus fundamental para a sua filosofia.</li>
+                <li><strong>Blaise Pascal:</strong> Profundamente cristão.</li>
+                <li><strong>Gottfried Wilhelm Leibniz:</strong> Via Deus como criador de um universo racional.</li>
+                <li><strong>Isaac Newton:</strong> Escreveu mais sobre teologia do que sobre física.</li>
+                <li><strong>Michael Faraday:</strong> Cristão convicto.</li>
+                <li><strong>James Clerk Maxwell:</strong> Cristão praticante.</li>
+                <li><strong>Gregor Mendel:</strong> Monge e fundador da genética.</li>
+                <li><strong>Louis Pasteur:</strong> Expressava fé em Deus.</li>
+                <li><strong>Max Planck:</strong> Acreditava que ciência e religião eram compatíveis.</li>
+                <li><strong>Werner Heisenberg:</strong> Reconhecia uma dimensão espiritual da realidade.</li>
+                <li><strong>Albert Einstein:</strong> Não era cristão; acreditava no "Deus de Baruch Spinoza" (ordem racional da natureza).</li>
+                <li><strong>Francis Collins:</strong> Diretor do Projeto Genoma Humano e cristão.</li>
+            </ul>
+        </section>
 
-    <h2>Universidades Importantes Fundadas pelo Cristianismo</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Universidade</th>
-                <th>Ano de Fundação</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td>Bolonha</td><td>1088</td></tr>
-            <tr><td>Oxford</td><td>Século XII</td></tr>
-            <tr><td>Paris</td><td>Nascida da escola de Notre-Dame</td></tr>
-            <tr><td>Cambridge</td><td>1209</td></tr>
-            <tr><td>Salamanca</td><td>1218</td></tr>
-            <tr><td>Pádua</td><td>1222</td></tr>
-            <tr><td>Coimbra</td><td>1290</td></tr>
-            <tr><td>Heidelberg</td><td>1386</td></tr>
-            <tr><td>Jaguelônica</td><td>1364</td></tr>
-        </tbody>
-    </table>
+        <section>
+            <h2>Pensadores não cristãos</h2>
+            <ul>
+                <li><strong>Maimônides</strong></li>
+                <li><strong>Avicena</strong></li>
+                <li><strong>Averróis</strong></li>
+                <li><strong>Mahatma Gandhi:</strong> Profundamente religioso (hindu).</li>
+                <li><strong>Rabindranath Tagore:</strong> Defendia uma espiritualidade centrada em Deus.</li>
+            </ul>
+        </section>
 
-    <div class="legado-box">
-        <p>Nossa existência não é uma bosta que logo vai se decompor, mas é uma construção de sentido que é marcada e desenvolvida para a posteridade.</p>
+        <section>
+            <h2>Universidades Fundadas pelo Cristianismo</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Universidade</th>
+                        <th>Fundação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Bolonha</td><td>1088</td></tr>
+                    <tr><td>Oxford</td><td>Século XII</td></tr>
+                    <tr><td>Paris</td><td>Escola de Notre-Dame</td></tr>
+                    <tr><td>Cambridge</td><td>1209</td></tr>
+                    <tr><td>Salamanca</td><td>1218</td></tr>
+                    <tr><td>Pádua</td><td>1222</td></tr>
+                    <tr><td>Coimbra</td><td>1290</td></tr>
+                    <tr><td>Heidelberg</td><td>1386</td></tr>
+                    <tr><td>Jaguelônica</td><td>1364</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div class="legado-box">
+            <p class="legado-texto">
+                Nossa existência não é uma bosta que logo vai se decompor, mas é uma construção de sentido que é marcada e desenvolvida para a posteridade.
+            </p>
+        </div>
     </div>
 </body>
 </html>
